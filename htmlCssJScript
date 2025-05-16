@@ -1,0 +1,115 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Store Catalogue</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <h1>My Store Catalogue</h1>
+  </header>
+  <nav class="category-nav">
+    <button class="filter-btn" data-category="all">All</button>
+    <button class="filter-btn" data-category="electronics">Electronics</button>
+    <button class="filter-btn" data-category="books">Books</button>
+    <button class="filter-btn" data-category="clothing">Clothing</button>
+  </nav>
+  <main>
+    <section class="product-list">
+      <article class="product-item" data-category="electronics">
+        <img src="https://via.placeholder.com/150" alt="Smartphone">
+        <h2 class="product-title">Smartphone</h2>
+        <p class="product-price">$499.99</p>
+      </article>
+      <article class="product-item" data-category="books">
+        <img src="https://via.placeholder.com/150" alt="Novel">
+        <h2 class="product-title">Bestselling Novel</h2>
+        <p class="product-price">$19.99</p>
+      </article>
+      <article class="product-item" data-category="clothing">
+        <img src="https://via.placeholder.com/150" alt="T-Shirt">
+        <h2 class="product-title">Graphic T-Shirt</h2>
+        <p class="product-price">$24.99</p>
+      </article>
+      <!-- Add more products as needed -->
+    </section>
+  </main>
+  <footer class="site-footer">
+    <p>&copy; 2025 My Store</p>
+  </footer>
+</body>
+</html>
+
+<!-- styles.css -->
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.site-header, .site-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+.filter-btn:hover {
+  background: #ddd;
+}
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.product-item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+}
+.product-item img {
+  max-width: 100%;
+  height: auto;
+}
+.product-title {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+.product-price {
+  font-weight: bold;
+}
+@media (max-width: 600px) {
+  .category-nav {
+    flex-wrap: wrap;
+  }
+}
+
+<!-- script.js -->
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.product-item');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+      items.forEach(item => {
+        item.style.display = (category === 'all' || item.dataset.category === category)
+          ? 'block'
+          : 'none';
+      });
+    });
+  });
+});
